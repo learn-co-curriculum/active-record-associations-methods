@@ -3,7 +3,7 @@
 ## Objectives
 
 - Understand the common methods we have access to from our Active Record
-   associations
+  associations
 - Use the methods that Active Record gives you based on your associations
 
 Previously, we learned what Active Record associations are and how to use them.
@@ -74,7 +74,7 @@ of macros.
 
 We can now call methods on the objects we associated with one another. Let's
 play around with our code using the console task we wrote for you in the
-Rakefile.
+`Rakefile`.
 
 ```bash
 rake console
@@ -82,15 +82,13 @@ rake console
 
 ```ruby
 hello = Song.create(name: "Hello")
-=> #<Song:0x007fc75a8de3d8 id: 1, name: "Hello", artist_id: nil, genre_id: nil>
-```
+# => #<Song:0x007fc75a8de3d8 id: 1, name: "Hello", artist_id: nil, genre_id: nil>
 
-```ruby
 adele = Artist.create(name: "Adele")
-=> #<Artist:0x007fc75b8d9490 id: 1, name: "Adele">
+# => #<Artist:0x007fc75b8d9490 id: 1, name: "Adele">
 ```
 
-So, we know that an individual song has an `artist_id` attribute. We *could*
+So, we know that an individual song has an `artist_id` attribute. We _could_
 associate `hello` to `adele` by setting `hello.artist_id=` equal to the `id` of
 the `adele` object. BUT! Active Record makes it so easy for us. The macros we
 implemented in our classes allow us to associate a song object directly to an
@@ -98,36 +96,36 @@ artist object:
 
 ```ruby
 hello.artist = adele
-=> #<Artist:0x007fc75b8d9490 id: 1, name: "Adele">
+# => #<Artist:0x007fc75b8d9490 id: 1, name: "Adele">
 ```
 
 Now, we can ask `hello` who its artist is:
 
 ```ruby
 hello.artist
-=> #<Artist:0x007fc75b8d9490 id: 1, name: "Adele">
+# => #<Artist:0x007fc75b8d9490 id: 1, name: "Adele">
 ```
 
-We can even chain methods to ask `hello` for the *name* of its artist:
+We can even chain methods to ask `hello` for the _name_ of its artist:
 
 ```ruby
 hello.artist.name
-=> "Adele"
+# => "Adele"
 ```
 
 We can tell the artist about their song:
 
 ```ruby
 rolling_in_the_deep = Song.create(name: "Rolling in the Deep")
-=> #<Song:0x007fc75bb4d1e0 id: 2, name: "Rolling in the Deep", artist_id: nil, genre_id: nil>
+# => #<Song:0x007fc75bb4d1e0 id: 2, name: "Rolling in the Deep", artist_id: nil, genre_id: nil>
 ```
 
 ```ruby
 adele.songs << rolling_in_the_deep
-=> #[ <Song:0x007fc75bb4d1e0 id: 2, name: "Rolling in the Deep", artist_id: 1, genre_id: nil> ]
+# => #[ <Song:0x007fc75bb4d1e0 id: 2, name: "Rolling in the Deep", artist_id: 1, genre_id: nil> ]
 
 rolling_in_the_deep.artist
-=> #<Artist:0x007fc75b8d9490 id: 1, name: "Adele">
+# => #<Artist:0x007fc75b8d9490 id: 1, name: "Adele">
 ```
 
 ## Starting the Lab
@@ -224,5 +222,3 @@ create a record. However, if this method is run multiple times, you won't want
 to create a new record _each time_. Rather, you only want to create a record
 if Drake is not found in the database already. Once found or created, assign
 this song to the drake Artist instance.
-
-
